@@ -24,6 +24,15 @@
             background-color: #ddd;
             color: black;
         }
+
+        /* Estilos para o nome do agente */
+        #agentName {
+            background-color: orange;
+            color: black;
+            padding: 5px;
+            border-radius: 5px;
+            display: inline-block; /* Para que o destaque fique ao lado do código do agente */
+        }
     </style>
 </head>
 <body>
@@ -38,9 +47,10 @@
     <div>
         <label for="filterAgent">Filtrar por CODAGENTE:</label>
         <input type="text" id="filterAgent" onkeyup="filterTable()">
-        <div id="agentNameContainer">
-            <div id="agentName"></div>
-        </div>
+        <span id="agentNameContainer"> <!-- Troquei a div por um span -->
+            <span>AGENTE:</span>
+            <span id="agentName"></span> <!-- Aqui será exibido o nome do agente -->
+        </span>
     </div>
     <div>
         <label for="filterGroup">Filtrar por NOMEDOGRUPO:</label>
