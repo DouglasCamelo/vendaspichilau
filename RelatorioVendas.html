@@ -33,6 +33,44 @@
             border-radius: 5px;
             display: inline-block; /* Para que o destaque fique ao lado do código do agente */
         }
+
+        /* Layout responsivo */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Estilos para o formulário de filtro */
+        .filter-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Estilos para a tabela */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+            color: black; /* Cor da fonte */
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
@@ -43,35 +81,37 @@
         <a href="#">Comissão</a>
     </div>
 
-    <h1>Vendas Mensal</h1>
-    <div>
-        <label for="filterAgent">Filtrar por CODAGENTE:</label>
-        <input type="text" id="filterAgent" onkeyup="filterTable()">
-        <span id="agentNameContainer"> <!-- Troquei a div por um span -->
+    <div class="container">
+        <h1>Vendas Mensal</h1>
+        <div class="filter-form">
+            <label for="filterAgent">Filtrar por CODAGENTE:</label>
+            <input type="text" id="filterAgent" onkeyup="filterTable()">
+            <label for="filterGroup">Filtrar por NOMEDOGRUPO:</label>
+            <input type="text" id="filterGroup" onkeyup="filterTable()">
+        </div>
+
+        <div id="agentNameContainer">
             <span>AGENTE:</span>
-            <span id="agentName"></span> <!-- Aqui será exibido o nome do agente -->
-        </span>
-    </div>
-    <div>
-        <label for="filterGroup">Filtrar por NOMEDOGRUPO:</label>
-        <input type="text" id="filterGroup" onkeyup="filterTable()">
+            <span id="agentName"></span>
+        </div>
+
+        <table id="salesTable">
+            <thead>
+                <tr>
+                    <th>CODAGENTE</th>
+                    <th>NOMEDOGRUPO</th>
+                    <th>CODGRUPO</th>
+                    <th>VOLUME</th>
+                    <th>FATURAMENTO</th>
+                    <th>CODEMPRESA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- As linhas da tabela serão adicionadas aqui dinamicamente -->
+            </tbody>
+        </table>
     </div>
 
-    <table id="salesTable">
-        <thead>
-            <tr>
-                <th>CODAGENTE</th>
-                <th>NOMEDOGRUPO</th>
-                <th>CODGRUPO</th>
-                <th>VOLUME</th>
-                <th>FATURAMENTO</th>
-                <th>CODEMPRESA</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- As linhas da tabela serão adicionadas aqui dinamicamente -->
-        </tbody>
-    </table>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <script src="script.js"></script>
 </body>

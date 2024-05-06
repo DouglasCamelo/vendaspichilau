@@ -47,6 +47,39 @@ document.addEventListener('DOMContentLoaded', function() {
         agentNameDiv.innerText = agentMapping[filteredAgentCode] || "";
     }
 
+    // Função para salvar as alterações feitas nas metas
+    function saveChanges() {
+        var table = document.getElementById("salesTable");
+        var rows = table.getElementsByTagName("tr");
+        var newData = [];
+
+        for (var i = 0; i < rows.length; i++) {
+            var cells = rows[i].getElementsByTagName("td");
+            var agentCode = cells[0].textContent || cells[0].innerText;
+            var newMeta = cells[4].textContent || cells[4].innerText; // Novo valor da meta
+            newData.push([agentCode, newMeta]); // Armazenar os novos dados em um array
+        }
+
+        // Enviar os dados para o servidor usando uma solicitação HTTP POST
+        fetch('/atualizar-metas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newData)
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Metas atualizadas com sucesso!');
+            } else {
+                console.error('Falha ao atualizar as metas.');
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao enviar solicitação:', error);
+        });
+    }
+
     // Adicionar os eventos de escuta para os campos de filtro
     document.getElementById("filterAgent").addEventListener("keyup", filterTable);
     document.getElementById("filterGroup").addEventListener("keyup", filterTable);
@@ -68,4 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
+
+    // Adicionar evento de escuta para o botão "Salvar"
+    document.getElementById("saveButton").addEventListener("click", saveChanges);
 });

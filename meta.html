@@ -42,7 +42,7 @@
 <div id="menu">
     <a href="index.html">Página Inicial</a>
     <a href="RelatorioVendas.html">Relatório de Vendas</a>
-    <a href="#">Metas de Vendas</a>
+    <a href="#">Metas</a>
     <a href="#">Comissões</a>
 </div>
 
@@ -78,7 +78,7 @@
 
                     // Excluir as colunas nos índices 4, 6, 7, 8 e 9
                     var colunasFiltradas = colunas.filter(function(_, index) {
-                        return ![3,5,6, 7, 8, 9].includes(index);
+                        return ![3,5,6,7,8,9].includes(index);
                     });
 
                     colunasFiltradas.forEach(function(coluna) {
